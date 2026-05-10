@@ -303,9 +303,9 @@ body::before{
   }
 }
 
-/* 엔딩 화면 */
+/* 편지 화면 */
 
-.ending-screen{
+.letter-screen{
 
   position:fixed;
   inset:0;
@@ -315,7 +315,7 @@ body::before{
   align-items:center;
 
   background:
-    linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.7)),
+    linear-gradient(rgba(0,0,0,.72), rgba(0,0,0,.72)),
     url("02.jpg");
 
   background-size:cover;
@@ -329,80 +329,103 @@ body::before{
   transition:1.2s ease;
 }
 
-/* 활성화 */
-
-.ending-screen.show{
+.letter-screen.show{
 
   opacity:1;
   pointer-events:auto;
 }
 
-/* 엔딩 내용 */
+/* 편지 */
 
-.ending-content{
+.letter{
 
-  text-align:center;
+  width:90%;
+  max-width:420px;
 
-  color:white;
+  background:
+    rgba(255,255,255,.95);
 
-  animation:endingFade 2s ease;
+  border-radius:22px;
+
+  padding:42px 32px;
+
+  color:#333;
+
+  position:relative;
+
+  box-shadow:
+    0 20px 50px rgba(0,0,0,.45);
+
+  transform:
+    translateY(80px)
+    scale(.9);
+
+  opacity:0;
+
+  transition:1.3s ease;
 }
 
-@keyframes endingFade{
+/* 편지 등장 */
 
-  from{
-    opacity:0;
-    transform:translateY(30px);
-  }
+.letter-screen.show .letter{
 
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
+  transform:
+    translateY(0)
+    scale(1);
+
+  opacity:1;
 }
 
-.ending-heart{
+/* 편지 상단 */
 
-  font-size:62px;
+.letter-top{
 
-  margin-bottom:20px;
+  font-size:50px;
+
+  margin-bottom:16px;
 
   animation:heartbeat 1.5s infinite;
 }
 
-.ending-content h1{
+/* 제목 */
+
+.letter h1{
 
   font-family:"MaruBuri", serif;
 
-  font-size:64px;
+  font-size:46px;
+
+  color:#8b5cf6;
+
+  margin-bottom:26px;
 
   font-weight:400;
 
-  letter-spacing:6px;
-
-  margin-bottom:30px;
+  letter-spacing:4px;
 }
 
-.ending-content p{
+/* 내용 */
 
-  font-size:24px;
+.letter p{
+
+  font-size:22px;
 
   line-height:2;
 
-  color:rgba(255,255,255,.92);
+  color:#444;
 }
 
-/* 하단 */
+/* 하단 사인 */
 
-.credit{
+.signature{
 
-  margin-top:40px;
+  margin-top:36px;
 
-  font-size:16px;
+  font-size:18px;
 
-  letter-spacing:4px;
+  color:#888;
 
-  color:rgba(255,255,255,.55);
+  letter-spacing:3px;
 }
 
 </style>
@@ -473,29 +496,32 @@ for(let i=0;i<45;i++){
 
 </div>
 
-<!-- 엔딩 화면 -->
+<!-- 편지 화면 -->
 
-<div class="ending-screen" id="endingScreen">
+<div class="letter-screen" id="letterScreen">
 
-  <div class="ending-content">
+  <div class="letter">
 
-    <div class="ending-heart">
+    <div class="letter-top">
       💜
     </div>
 
-    <h1>THE LOVE</h1>
+    <h1>LOVE LETTER</h1>
 
     <p>
 
       여보야 나 좋아해줘서<br>
-      너무 고마워💖<br><br>
+      너무 고마워 💖<br><br>
 
-      앞으로도 잘 부탁해<br>
-      내 인생의 행복은 여보야💐💍
+      앞으로도 우리<br>
+      예쁘게 오래오래 만나자 ☺️<br><br>
+
+      내 인생의 행복은<br>
+      여보야야 💐💍
 
     </p>
 
-    <div class="credit">
+    <div class="signature">
       WITH YOU FOREVER
     </div>
 
@@ -511,8 +537,8 @@ document.getElementById("yesBtn");
 const noBtn=
 document.getElementById("noBtn");
 
-const endingScreen=
-document.getElementById("endingScreen");
+const letterScreen=
+document.getElementById("letterScreen");
 
 /* YES 버튼 */
 
@@ -522,7 +548,7 @@ yesBtn.addEventListener("click",()=>{
 
   setTimeout(()=>{
 
-    endingScreen.classList.add("show");
+    letterScreen.classList.add("show");
 
   },600);
 
